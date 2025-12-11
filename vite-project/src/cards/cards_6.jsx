@@ -46,7 +46,6 @@ const Cards_6 = () => {
     loadProducts();
   }, []);
 
-  // Переключение фильтров
   const toggleFilter = (category, name) => {
     setActiveFilters((prev) => {
       const updated = prev[category].includes(name)
@@ -74,8 +73,6 @@ const Cards_6 = () => {
 
     return matchesSearch && matchesManufacturer && matchesType;
   });
-
-  // Добавить товар в корзину
   const addToCart = async (productId) => {
     if (!user) {
       alert("Сначала войдите в профиль!");
@@ -97,8 +94,6 @@ const Cards_6 = () => {
       alert("Ошибка соединения с сервером");
     }
   };
-
-  // Удалить товар из корзины
   const removeFromCart = async (cartItemId) => {
     if (!user) {
       alert("Сначала войдите в профиль!");
@@ -121,7 +116,6 @@ const Cards_6 = () => {
 
   return (
     <div className="catalog-page">
-      {/* Верхний блок: поиск + корзина */}
       <div className="catalog-header">
         <div className="header-center">
           <form className="cards-search-form">
