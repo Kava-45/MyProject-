@@ -1,0 +1,35 @@
+
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.fav-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+}
+
+.fav-thumb {
+  width: 86px;
+  height: 86px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: linear-gradient(180deg,#111,#1b1b1b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fav-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+.fav-body { flex: 1; }
+.fav-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+.fav-price { color: #30d5c8; font-weight: 700; }

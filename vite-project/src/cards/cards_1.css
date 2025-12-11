@@ -1,0 +1,280 @@
+
+.catalog-page {
+  background: #3c3a3a;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.catalog-header {
+  display: flex;
+  justify-content: center;
+  background: #3c3a3a;
+  padding: 30px 0;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.cards-search-form {
+  display: flex;
+  width: 700px;
+}
+
+.cards-search-input {
+  flex: 1;
+  padding: 16px 25px;
+  border: 2px solid #30d5c8;
+  border-right: none;
+  border-radius: 30px 0 0 30px;
+  background: #3c3a3a;
+  color: #fff;
+  font-size: 16px;
+  outline: none;
+}
+
+.cards-search-input::placeholder {
+  color: #ccc;
+}
+
+.cards-search-button {
+  padding: 10px 18px;
+  background: #30d5c8;
+  border: none;
+  border-radius: 0 30px 30px 0;
+  color: #3c3a3a;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cards-search-button:hover {
+  background: #2b8dd6;
+}
+
+.header-icons {
+  display: flex;
+  gap: 20px;
+  margin-left: 20px;
+}
+
+.header-icons .icon {
+  font-size: 28px;
+  color: #30d5c8;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.header-icons .icon:hover {
+  color: #2b8dd6;
+}
+
+.catalog-content {
+  display: flex;
+  gap: 30px;
+  padding: 0 20px 40px 20px;
+}
+
+.filter-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.filter-section {
+  background: #3c3a3a;
+  border: 2px solid #30d5c8;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.filter-title {
+  color: #30d5c8;
+  font-weight: bold;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.filter-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.filter-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #30d5c8;
+}
+
+.filter-item label {
+  color: #fff;
+  cursor: pointer;
+}
+
+.filter-count {
+  font-size: 12px;
+  color: #ccc;
+}
+
+
+.products-main {
+  flex: 1;
+}
+
+.page-title {
+  color: #30d5c8;
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+}
+
+.product-card {
+  background: #3c3a3a;
+  border: 2px solid #30d5c8;
+  border-radius: 15px;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(48, 213, 200, 0.3);
+}
+
+.product-badge {
+  background: #30d5c8;
+  color: #3c3a3a;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.product-code {
+  color: #ccc;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.product-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+  line-height: 1.3;
+  font-size: 16px;
+}
+
+.product-description {
+  font-size: 14px;
+  color: #ccc;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+.product-availability {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #30d5c8;
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+}
+
+.availability-status {
+  font-weight: bold;
+  color: #2ecc71;
+}
+
+.product-price {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.current-price {
+  font-size: 22px;
+  font-weight: bold;
+  color: #30d5c8;
+}
+
+.add-to-cart-btn {
+  background: #30d5c8;
+  color: #3c3a3a;
+  border: none;
+  border-radius: 25px;
+  padding: 14px 24px;
+  width: 100%;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.add-to-cart-btn:hover {
+  background: #2b8dd6;
+  transform: scale(1.05);
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+  .catalog-content {
+    flex-direction: column;
+  }
+  .filter-sidebar {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 24px;
+  }
+  .cards-search-form {
+    width: 100%;
+  }
+  .header-center {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+  .header-icons {
+    justify-content: center;
+  }
+}

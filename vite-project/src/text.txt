@@ -1,0 +1,205 @@
+import React, { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
+
+
+// Модалка входа
+const LoginModal = ({
+  loginData,
+  handleInputChange,
+  handleKeyDown,
+  handleLoginSubmit,
+  closeLoginModal,
+  handleOverlayClick,
+  emailInputRef
+}) => (
+  <div className="modal-overlay" onClick={handleOverlayClick}>
+    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+      <div className="modal-header">
+        <h2>Вход в аккаунт</h2>
+        <button className="modal-close" onClick={closeLoginModal} type="button">×</button>
+      </div>
+
+      <form onSubmit={handleLoginSubmit} className="login-form">
+        <div className="form-group">
+          <label htmlFor="header-email" className="form-label">Email</label>
+          <input
+            ref={emailInputRef}
+            type="email"
+            id="header-email"
+            name="email"
+            value={loginData.email}
+            onChange={handleInputChange}
+            onKeyDown={(e) => handleKeyDown(e, "password")}
+            className="form-input"
+            placeholder="your@email.com"
+            required
+            autoComplete="email"
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="header-password" className="form-label">Пароль</label>
+          <input
+            type="password"
+            id="header-password"
+            name="password"
+            value={loginData.password}
+            onChange={handleInputChange}
+            onKeyDown={(e) => handleKeyDown(e, "submit")}
+            className="form-input"
+            placeholder="Введите пароль"
+            required
+            autoComplete="current-password"
+          />
+        </div>
+
+        <button type="submit" className="login-button">Войти</button>
+      </form>
+    </div>
+  </div>
+);
+
+const Header_searcher = () => {
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [loginData, setLoginData] = useState({ email: "", password: "" });
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState("");
+
+  const emailInputRef = useRef(null);
+
+  // Автофокус на email при открытии модалки
+  useEffect(() => {
+    if (showLoginModal) {
+      setTimeout(() => emailInputRef.current?.focus(), 50);
+    }
+  }, [showLoginModal]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setLoginData(prev => ({ ...prev, [name]: value }));
+  };
+
+  // Отправка данных на FastAPI
+  const handleLoginSubmit = async (e) => {
+    e.preventDefault();
+    if (!loginData.email || !loginData.password) return;
+
+    try {
+      const response = await fetch("http://localhost:8000/users/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: loginData.email,
+          password: loginData.password
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setIsLoggedIn(true);
+        setUserName(loginData.email.split("@")[0]);
+        setShowLoginModal(false);
+        setLoginData({ email: "", password: "" });
+        alert("Пользователь успешно создан!");
+      } else {
+        alert(data.detail || "Ошибка регистрации");
+      }
+    } catch (error) {
+      console.error("Ошибка:", error);
+      alert("Не удалось подключиться к серверу");
+    }
+  };
+
+  const handleKeyDown = (e, nextField) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      if (nextField === "password") {
+        document.getElementById("header-password")?.focus();
+      } else if (nextField === "submit") {
+        handleLoginSubmit(e);
+      }
+    }
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUserName("");
+  };
+
+  const openLoginModal = () => setShowLoginModal(true);
+  const closeLoginModal = () => {
+    setShowLoginModal(false);
+    setLoginData({ email: "", password: "" });
+  };
+
+  const handleOverlayClick = (e) => {
+    if (e.target === e.currentTarget) closeLoginModal();
+  };
+
+  return (
+    <>
+      <header className="header">
+        <div className="header-container">
+          <div className="logo-section">
+            <div className="logo">
+              <img src="Logo_1_3.jpg" alt="ZAPPER" />
+            </div>
+            <div className="brand-name">ZAPPER</div>
+          </div>
+
+          <div className="search-container">
+            <form className="search-form">
+              <input type="text" className="search-input" placeholder="Поиск товаров..." />
+              <button type="submit" className="search-button">
+                <i className="fas fa-search"></i>
+              </button>
+            </form>
+          </div>
+
+          <div className="action-icons">
+            <Link to="/favorite" className="icon-item">
+              <i className="fas fa-heart"></i>
+              <span>Избранное</span>
+            </Link>
+            <Link to="/basket" className="icon-item">
+              <i className="fas fa-shopping-cart"></i>
+              <span>Корзина</span>
+            </Link>
+
+            {isLoggedIn ? (
+              <div className="user-menu">
+                <Link to="/profile" className="icon-item">
+                  <i className="fas fa-user"></i>
+                  <span>{userName}</span>
+                </Link>
+                <button onClick={handleLogout} className="logout-btn" title="Выйти" type="button">
+                  <i className="fas fa-sign-out-alt"></i>
+                </button>
+              </div>
+            ) : (
+              <button onClick={openLoginModal} className="icon-item login-btn" type="button">
+                <i className="fas fa-user"></i>
+                <span>Войти</span>
+              </button>
+            )}
+          </div>
+        </div>
+      </header>
+
+      {showLoginModal && (
+        <LoginModal
+          loginData={loginData}
+          handleInputChange={handleInputChange}
+          handleKeyDown={handleKeyDown}
+          handleLoginSubmit={handleLoginSubmit}
+          closeLoginModal={closeLoginModal}
+          handleOverlayClick={handleOverlayClick}
+          emailInputRef={emailInputRef}
+        />
+      )}
+    </>
+  );
+};
+
+export default Header_searcher;

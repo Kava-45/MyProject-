@@ -1,0 +1,598 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: #3c3a3a;
+    display: flex;
+    flex-direction: column;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.top-nav {
+    background: linear-gradient(90deg, #30d5c8, #2b8dd6);
+    padding: 10px 0;    
+    color: #3c3a3a;
+    font-size: 14px;
+    width: 100%;
+}
+
+.top-nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.top-nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.top-nav-links a {
+    color: #3c3a3a;
+    text-decoration: none;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+}
+
+.top-nav-links a:hover {
+    opacity: 0.8;
+}
+
+.header {
+    background: #3c3a3a;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    padding: 15px 0;
+    width: 100%;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #30d5c8;
+    overflow: hidden;
+    background: #3c3a3a;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.brand-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #30d5c8;
+    text-transform: uppercase;
+}
+
+.search-container {
+    flex: 1;
+    max-width: 600px;
+    margin: 0 40px;
+}
+
+.search-form {
+    display: flex;
+    width: 100%;
+}
+
+.search-input {
+    flex: 1;
+    padding: 12px 20px;
+    border: 2px solid #30d5c8;
+    border-right: none;
+    border-radius: 25px 0 0 25px;
+    font-size: 16px;
+    outline: none;
+}
+
+.search-button {
+    padding: 12px 25px;
+    background: #30d5c8;
+    border: none;
+    border-radius: 0 25px 25px 0;
+    color: #3c3a3a;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.search-button:hover {
+    background: #2b8dd6;
+}
+
+.action-icons {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #30d5c8;
+    font-size: 12px;
+    transition: all 0.3s;
+}
+
+.icon-item i {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.icon-item:hover {
+    color: #2b8dd6;
+    transform: translateY(-2px);
+}
+
+/* Кнопка входа в хедере */
+.login-btn {
+    background: none;
+    border: none;
+    color: #30d5c8;
+    cursor: pointer;
+    padding: 0;
+    font: inherit;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.3s ease;
+    font-size: 12px;
+}
+
+.login-btn:hover {
+    color: #2b8dd6;
+    transform: translateY(-2px);
+}
+
+.login-btn i {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.categories-title {
+    color: #30d5c8;
+    text-align: center;
+    font-size: 32px;
+    margin: 40px 0 20px;
+}
+
+.categories-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 0 20px 40px;
+}
+
+.category-box {
+    background: rgba(255,255,255,0.95);
+    border: 3px solid #30d5c8;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.category-box:hover {
+    transform: translateY(-5px);
+}
+
+.category-box h3 {
+    color: #3c3a3a;
+    margin-bottom: 15px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.under_the_text {
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 10px;
+    border: 2px solid #30d5c8;
+    margin: 8px 0;
+    font-size: 15px;
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+}
+
+.under_the_text:hover {
+    background: #30d5c8;
+    color: #fff;
+    transform: scale(1.03);
+}
+
+.features-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px 40px;
+}
+
+.delivery-block {
+    background: #ffffff; 
+    border-radius: 10px;
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    margin-bottom: 40px;
+    overflow: hidden;
+    position: relative;
+}
+
+.delivery-content {
+    flex: 1;
+    max-width: 50%;
+    z-index: 1;
+}
+
+.delivery-block h1 {
+    font-size: 36px;
+    font-weight: 800;
+    color: #3c3a3a;
+    margin-bottom: 25px;
+}
+
+.red-strip {
+    height: 10px;
+    width: 150px;
+    background-color: #30d5c8;
+    margin-bottom: 20px;
+}
+
+.location-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.location-info i {
+    color: #30d5c8;
+    font-size: 24px;
+}
+
+.highlight {
+    color: #30d5c8;
+    font-weight: bold;
+}
+
+.delivery-text {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: #555;
+}
+
+.logistics-logos {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.delivery-image {
+    box-sizing: border-box;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 45%; 
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.delivery-image img {
+    max-height: 350px;
+    width: auto;
+    object-fit: contain;
+    position: absolute;
+    bottom: 0;
+    right: -20px; 
+}
+
+.guarantee-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    text-align: left; 
+    padding: 20px 0;
+}
+
+.guarantee-item {
+    flex: 1;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid rgba(48, 213, 200, 0.3);
+    border-radius: 10px;
+}
+
+.guarantee-icon-wrapper {
+    margin-bottom: 15px;
+}
+
+.guarantee-icon-wrapper i {
+    font-size: 50px;
+    color: #30d5c8;
+}
+
+.guarantee-item h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #3c3a3a;
+    margin-bottom: 10px;
+}
+
+.guarantee-item p {
+    color: #555;
+    line-height: 1.5;
+}
+
+.under_the_text {
+    display: block;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 10px;
+    border: 2px solid #30d5c8;
+    margin: 8px 0;
+    font-size: 15px;
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.under_the_text:hover {
+    background: #30d5c8;
+    color: #fff;
+    transform: scale(1.03);
+}
+
+/* Стили для модального окна входа */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #3c3a3a;
+    border-radius: 12px;
+    padding: 0;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 2px solid #30d5c8;
+    animation: modalAppear 0.3s ease-out;
+}
+
+@keyframes modalAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(48, 213, 200, 0.3);
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #30d5c8;
+}
+
+.modal-close {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #8f9698;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: rgba(48, 213, 200, 0.1);
+    color: #30d5c8;
+}
+
+/* Форма в модальном окне */
+.login-form {
+    padding: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.form-label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #e9eef0;
+}
+
+.form-input {
+    padding: 12px;
+    border: 1px solid rgba(48, 213, 200, 0.3);
+    border-radius: 8px;
+    font-size: 14px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #e9eef0;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #30d5c8;
+    box-shadow: 0 0 0 2px rgba(48, 213, 200, 0.2);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.form-input::placeholder {
+    color: #8f9698;
+}
+
+.login-button {
+    background: transparent;
+    color: #30d5c8;
+    border: 2px solid rgba(48, 213, 200, 0.3);
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.login-button:hover {
+    background: rgba(48, 213, 200, 0.1);
+    transform: translateY(-1px);
+}
+
+.login-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(48, 213, 200, 0.3);
+}
+
+.register-link,
+.forgot-link {
+    color: #30d5c8;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.register-link:hover,
+.forgot-link:hover {
+    color: #e9eef0;
+    text-decoration: underline;
+}
+
+/* Стили для меню пользователя в хедере */
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logout-btn {
+    background: transparent;
+    border: none;
+    color: #ff6b6b;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-btn:hover {
+    background: rgba(255, 107, 107, 0.1);
+}
+
+/* Адаптивность для модального окна */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 95%;
+        margin: 20px;
+    }
+    
+    .modal-header {
+        padding: 16px 20px;
+    }
+    
+    .login-form {
+        padding: 20px;
+    }
+
+    .login-links {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .user-menu span {
+        display: none;
+    }
+}
