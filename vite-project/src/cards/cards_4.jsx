@@ -14,7 +14,6 @@ const Cards_4 = () => {
 
   const [user, setUser] = useState(null);
 
-  // Загружаем юзера из localStorage
   useEffect(() => {
     const savedUser = JSON.parse(localStorage.getItem("user"));
     if (savedUser) setUser(savedUser);
@@ -25,7 +24,6 @@ const Cards_4 = () => {
     "Свеча зажигания Стандарт",
   ];
 
-  // Загружаем товары
   useEffect(() => {
     const loadProducts = async () => {
       try {
@@ -44,7 +42,6 @@ const Cards_4 = () => {
     loadProducts();
   }, []);
 
-  // Переключение фильтров
   const toggleFilter = (name) => {
     setActiveFilters((prev) =>
       prev.includes(name)
@@ -53,7 +50,6 @@ const Cards_4 = () => {
     );
   };
 
-  // Фильтрация
   const filteredProducts = products.filter((p) => {
     const text = searchTerm.toLowerCase().trim();
 
@@ -77,7 +73,6 @@ const Cards_4 = () => {
     return matchesSearch && matchesFilter;
   });
 
-  // Добавление в корзину
   const handleAddToCart = async (productId) => {
     if (!user?.id) {
       alert("Вы не авторизованы! Сначала войдите в систему.");
@@ -158,7 +153,6 @@ const Cards_4 = () => {
           </div>
         </aside>
 
-        {/* Список товаров */}
         <main className="products-main">
           <h1 className="page-title">Свечи зажигания</h1>
 

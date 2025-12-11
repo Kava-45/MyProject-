@@ -9,7 +9,7 @@ const Cards_3 = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedManufacturers, setSelectedManufacturers] = useState([]);
   const [selectedCompositions, setSelectedCompositions] = useState([]);
-  const [addingToCart, setAddingToCart] = useState(null); // ID товара в процессе добавления
+  const [addingToCart, setAddingToCart] = useState(null); 
 
   const manufacturers = [
     { name: "Помск", count: null },
