@@ -17,8 +17,9 @@ const Header_searcher = () => {
       setIsLoggedIn(true);
       setUser(savedUser);
     }
-  }, []);
-
+  }, []); 
+  
+  /* обработка ввода в форму */
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setLoginData((prev) => ({ ...prev, [name]: value }));
