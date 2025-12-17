@@ -24,9 +24,11 @@ class ProductBase(BaseModel):
     oldPrice: str | None = None
     currentPrice: str
 
+# создание товара 
 class ProductCreate(ProductBase):
     pass
 
+# показывает товар 
 class ProductOut(ProductBase):
     id: int
 
