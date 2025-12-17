@@ -6,10 +6,11 @@ import "./header.css";
 const Header_searcher = () => {
   const navigate = useNavigate();
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [loginData, setLoginData] = useState({ email: "", password: "" });
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState(null);
+  const [loginData, setLoginData] = useState({ email: "", password: "" }); /* пользователь авторизован или нет */
+  const [isLoggedIn, setIsLoggedIn] = useState(false);  /* пользователь авторизован или нет */
+  const [user, setUser] = useState(null); /* текущий пользователь */
 
+  /* проверка авторизации при загрузке */
   useEffect(() => {
     const savedUser = JSON.parse(localStorage.getItem("user"));
     if (savedUser) {
@@ -33,7 +34,9 @@ const Header_searcher = () => {
       }
     }
   };
+  
 
+  /* логин и регистрация */
   const handleLoginSubmit = async (e, isRegister) => {
     e.preventDefault();
     if (!loginData.email || !loginData.password) return;
@@ -62,14 +65,19 @@ const Header_searcher = () => {
     }
   };
 
+
+  /* выход из аккаунта  */
   const handleLogout = () => {
     localStorage.removeItem("user");
     setIsLoggedIn(false);
     setUser(null);
   };
 
+
+  /* запрос логина  */
   const askLogin = () => setShowLoginModal(true);
 
+  /* добавление в корзину */ 
   const addToCart = async (productId, quantity = 1) => {
     if (!isLoggedIn) {
       askLogin();
@@ -91,6 +99,7 @@ const Header_searcher = () => {
     }
   };
 
+  /* аватар */
   const Icon = ({ icon, text, onClick }) => (
     <div className="icon-item" onClick={onClick}>
       <i className={icon}></i>
@@ -138,6 +147,7 @@ const Header_searcher = () => {
         </div>
       </header>
 
+        /* окно для входа  */
       {showLoginModal && (
         <LoginModal
           loginData={loginData}
