@@ -7,13 +7,14 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 # user 
 def get_users(db: Session):
     return db.query(User).all()
-
+# user id 
 def get_user_by_id(db: Session, user_id: int):
     return db.query(User).filter(User.id == user_id).first()
-
+# mail
 def get_user_by_email(db: Session, email: str):
     return db.query(User).filter(User.email == email).first()
 
+# создание user 
 def create_user(db: Session, email: str, password: str):
     hashed_password = pwd_context.hash(password)
     new_user = User(email=email, hashed_password=hashed_password)
@@ -22,6 +23,7 @@ def create_user(db: Session, email: str, password: str):
     db.refresh(new_user)
     return new_user
 
+# проверка user 
 def authenticate_user(db: Session, email: str, password: str):
     user = get_user_by_email(db, email)
     if not user:
@@ -30,10 +32,11 @@ def authenticate_user(db: Session, email: str, password: str):
         return None
     return user
 
-# === PRODUCTS ===
+# products 
 def get_products(db: Session):
     return db.query(Product).all()
 
+# создание product 
 def create_product(db: Session, product_data):
     product = Product(
         badge=product_data.badge,
@@ -51,10 +54,11 @@ def create_product(db: Session, product_data):
     db.refresh(product)
     return product
 
-# === CART ===
+# корзина 
 def get_cart(db: Session, user_id: int):
     return db.query(CartItem).filter(CartItem.user_id == user_id).all()
 
+# добавление в корзину 
 def add_to_cart(db: Session, user_id: int, item):
     cart_item = CartItem(
         user_id=user_id,
@@ -66,6 +70,7 @@ def add_to_cart(db: Session, user_id: int, item):
     db.refresh(cart_item)
     return cart_item
 
+# удаление продукта 
 def remove_from_cart(db: Session, user_id: int, cart_item_id: int):
     item = db.query(CartItem).filter(
         CartItem.id == cart_item_id,
