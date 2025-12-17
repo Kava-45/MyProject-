@@ -6,10 +6,12 @@ const LoginModal = ({ loginData, handleInputChange, handleKeyDown, handleLoginSu
   const emailInputRef = useRef(null);
   const [isRegister, setIsRegister] = useState(false);
 
+ /* фокус на поле email */
   useEffect(() => {
     setTimeout(() => emailInputRef.current?.focus(), 50);
   }, [isRegister]);
 
+  /* закрываем при клике окно для входа  */
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -20,12 +22,15 @@ const LoginModal = ({ loginData, handleInputChange, handleKeyDown, handleLoginSu
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [closeLoginModal]);
 
+
+  /* переключение вкладок   */
   const handleTabSwitch = () => {
     setIsRegister(!isRegister);
     handleInputChange({ target: { name: "email", value: "" } });
     handleInputChange({ target: { name: "password", value: "" } });
   };
 
+  /* отправка данных   */
   const onSubmit = (e) => handleLoginSubmit(e, isRegister);
 
   return (
@@ -68,6 +73,7 @@ const LoginModal = ({ loginData, handleInputChange, handleKeyDown, handleLoginSu
             {isRegister ? "Зарегистрироваться" : "Войти"}
           </button>
 
+          /* смена вкладок */
           <div className="login-links">
             {isRegister ? (
               <span className="login-text">
