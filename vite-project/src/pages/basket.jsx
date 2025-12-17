@@ -7,6 +7,7 @@ const Basket = ({ name = "Kava", balance = "0 ₽", registered = "22.10.2025" })
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  /* загрузка пользователя */
   useEffect(() => {
     const savedUser = JSON.parse(localStorage.getItem("user"));
     if (savedUser) setUser(savedUser);
@@ -16,14 +17,16 @@ const Basket = ({ name = "Kava", balance = "0 ₽", registered = "22.10.2025" })
     if (!user?.id) return;
     setLoading(true);
     try {
+      /* загрузка товаров корзины */
       const res = await fetch(`http://localhost:8000/cart/?user_id=${user.id}`);
       if (!res.ok) throw new Error("Ошибка загрузки корзины");
       const data = await res.json();
 
+      /* загрузка списка товаров   */
       const prodRes = await fetch("http://localhost:8000/products/");
       if (!prodRes.ok) throw new Error("Ошибка загрузки товаров");
       const products = await prodRes.json();
-
+      /* объединение корзины и товаров  */
       const cartItems = data.map(item => {
         const product = products.find(p => p.id === item.product_id);
         return {
