@@ -26,6 +26,7 @@ const Basket = ({ name = "Kava", balance = "0 ₽", registered = "22.10.2025" })
       const prodRes = await fetch("http://localhost:8000/products/");
       if (!prodRes.ok) throw new Error("Ошибка загрузки товаров");
       const products = await prodRes.json();
+
       /* объединение корзины и товаров  */
       const cartItems = data.map(item => {
         const product = products.find(p => p.id === item.product_id);
@@ -42,11 +43,12 @@ const Basket = ({ name = "Kava", balance = "0 ₽", registered = "22.10.2025" })
       setLoading(false);
     }
   };
-
+  /* повторное загрузка при изменении user */
   useEffect(() => {
     if (user?.id) loadCart();
   }, [user]);
-
+  
+  /* удаление товара из корзины  */
   const removeItem = async (cartItemId) => {
     if (!user?.id) return;
     try {
