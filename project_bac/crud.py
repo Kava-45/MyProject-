@@ -4,7 +4,7 @@ from passlib.context import CryptContext
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-# === USERS ===
+# user 
 def get_users(db: Session):
     return db.query(User).all()
 
