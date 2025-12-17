@@ -7,11 +7,15 @@ from typing import List
 
 router = APIRouter()
 
+
+# получаем все товары 
 @router.get("/", response_model=List[ProductOut])
 def get_all_products(db: Session = Depends(get_db)):
     products = crud.get_products(db)
     return products
 
+
+# добавление товара 
 @router.post("/", response_model=ProductOut)
 def add_product(product: ProductCreate, db: Session = Depends(get_db)):
     created = crud.create_product(db, product)

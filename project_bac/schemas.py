@@ -1,10 +1,10 @@
 from pydantic import BaseModel, EmailStr, Field
 
-# Users 
+# проверяем Users 
 class UserCreate(BaseModel):
     email: EmailStr
     password: str = Field(min_length=6, max_length=30)
-
+# ответ user
 class UserOut(BaseModel):
     id: int
     email: EmailStr
