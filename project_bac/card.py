@@ -19,6 +19,7 @@ def add_item_to_cart(item: CartItemCreate, user_id: int = Query(...), db: Sessio
     return crud.add_to_cart(db, user_id, item)
 
 # удаление товара 
+
 @router.delete("/{cart_item_id}")
 def delete_cart_item(cart_item_id: int, user_id: int = Query(...), db: Session = Depends(get_db)):
     removed_item = crud.remove_from_cart(db, user_id, cart_item_id)
