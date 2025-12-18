@@ -148,7 +148,7 @@ const Header_searcher = () => {
         </div>
       </header>
 
-        /* окно для входа  */
+        {/* окно для входа  */}
       {showLoginModal && (
         <LoginModal
           loginData={loginData}
